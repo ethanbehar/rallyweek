@@ -7,6 +7,22 @@
 <link rel="icon" type="image/x-icon" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="./RPIGeist-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="./RPIGeist-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<meta name="description" content="RPI Rally Week — one week of teams, games, performances, challenges, and campus-wide events. Sept. 13–19 in Troy, NY.">
+<meta name="theme-color" content="#150e2b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RPI Rally Week 2026 · '80s Liftoff">
+<meta property="og:description" content="One week. One campus. Rally with your team for games, performances, challenges, and prizes. Sept. 13–19 · Troy, NY.">
+<meta property="og:site_name" content="RPI Rally Week">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og-rally-week.png">
+<meta property="og:image:alt" content="RPI Rally Week 2026 — '80s Liftoff">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RPI Rally Week 2026 · '80s Liftoff">
+<meta name="twitter:description" content="One week. One campus. Sept. 13–19 in Troy, NY.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-rally-week.png">
   <style>
   :root{
     --navy: #150e2b;
@@ -563,6 +579,461 @@
   .day-time{right:12px; top:12px; font-size:.58rem; padding:4px 5px;}
 }
 
+
+  /* ---------- RPI Geist department type ---------- */
+  @font-face{
+    font-family:'RPIGeist';
+    src:url('./RPIGeist-Regular.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'RPIGeist';
+    src:url('./RPIGeist-Bold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+    font-display:swap;
+  }
+
+  /* ---------- schedule day descriptions ---------- */
+  .day-blurb{
+    position:relative;
+    z-index:1;
+    max-width:620px;
+    color:var(--cream-dim);
+    font-size:.82rem;
+    line-height:1.5;
+    margin:5px 0 0;
+  }
+
+  /* ---------- department / school sponsor wall ---------- */
+  .sponsor-logos{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+    margin-top:26px;
+  }
+  .sponsor-slot{
+    position:relative;
+    width:auto;
+    min-height:92px;
+    height:auto;
+    overflow:hidden;
+    border:1px solid rgba(253,246,236,.2);
+    border-radius:4px;
+    background:
+      linear-gradient(135deg,rgba(94,200,216,.08),transparent 48%),
+      rgba(15,12,31,.55);
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+    text-align:left;
+    padding:14px 14px 12px;
+    transition:transform .18s ease,border-color .18s ease,background .18s ease;
+  }
+  .sponsor-slot::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; width:100%; height:3px;
+    background:var(--accent,var(--cyan));
+  }
+  .sponsor-slot::after{
+    content:attr(data-num);
+    position:absolute;
+    top:9px; right:10px;
+    font-family:'Space Mono',monospace;
+    font-size:.55rem;
+    letter-spacing:1px;
+    color:var(--cream-dim);
+    opacity:.65;
+  }
+  .sponsor-slot:hover{
+    transform:translateY(-3px) rotate(-.5deg);
+    border-color:var(--accent,var(--cyan));
+    background:
+      linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--cyan)) 14%,transparent),transparent 58%),
+      rgba(15,12,31,.72);
+  }
+  .sponsor-school{
+    font-family:'Space Mono',monospace;
+    font-size:.48rem;
+    line-height:1.2;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    margin-bottom:5px;
+  }
+  .sponsor-name{
+    font-family:'RPIGeist','Outfit',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    line-height:1.02;
+    letter-spacing:-.3px;
+    color:var(--cream);
+  }
+  .sponsor-slot:nth-child(4n+1){--accent:var(--cyan);}
+  .sponsor-slot:nth-child(4n+2){--accent:var(--yellow);}
+  .sponsor-slot:nth-child(4n+3){--accent:var(--magenta);}
+  .sponsor-slot:nth-child(4n){--accent:var(--purple);}
+  @media(max-width:900px){
+    .sponsor-logos{grid-template-columns:repeat(3,minmax(0,1fr));}
+  }
+  @media(max-width:620px){
+    .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+    .sponsor-slot{min-height:82px;padding:12px 11px 10px;}
+    .sponsor-name{font-size:.86rem;}
+    .sponsor-school{font-size:.43rem;}
+  }
+
+  /* ---------- mobile schedule: time gets its own row ---------- */
+  @media(max-width:540px){
+    .day-card{padding:14px 15px 15px; min-height:0;}
+    .day-head{
+      padding-right:0;
+      min-height:0;
+      display:flex;
+      align-items:flex-start;
+      flex-wrap:nowrap;
+      gap:8px;
+      margin-bottom:0;
+    }
+    .day-date{flex:0 0 auto; font-size:.59rem;}
+    .day-title{
+      min-width:0;
+      font-size:.86rem;
+      line-height:1.15;
+    }
+    .day-time{
+      position:static;
+      display:block;
+      width:max-content;
+      max-width:100%;
+      margin:8px 0 0;
+      font-size:.56rem;
+      padding:4px 6px;
+      line-height:1.2;
+    }
+    .day-blurb{
+      font-size:.72rem;
+      line-height:1.42;
+      margin-top:7px;
+    }
+  }
+
+  /* Keep the hero CTAs side-by-side on phones when there is room. */
+  @media(max-width:540px){
+    .hero-ctas{width:100%; gap:10px; flex-wrap:nowrap;}
+    .hero-ctas .btn{
+      flex:1 1 0;
+      min-width:0;
+      justify-content:center;
+      padding:13px 9px;
+      font-size:.66rem;
+      white-space:nowrap;
+    }
+    .hero-ctas .btn-rhombus{padding-left:10px;padding-right:10px;}
+  }
+
+  /* Make the embedded signup form much more usable on small screens. */
+  @media(max-width:720px){
+    .signup-wrap{
+      max-width:none;
+      padding:18px 10px 24px;
+      border-radius:12px;
+    }
+    .signup-wrap iframe{
+      min-height:1100px;
+      height:1100px;
+      width:100%;
+      border-radius:8px;
+    }
+    .signup-wrap > .btn{
+      width:auto;
+      margin-left:auto;
+      margin-right:auto;
+      padding-left:22px;
+      padding-right:22px;
+    }
+  }
+
+  /* ---------- TV becomes a broadcast feature instead of another logo ---------- */
+  .retro-tv-wrap{margin-top:4px;}
+
+
+  /* ---------- schedule: compact poster-style rows ---------- */
+  .day-card{padding:15px 20px; min-height:72px;}
+  .day-head{
+    display:grid;
+    grid-template-columns:auto auto minmax(0,1fr);
+    align-items:center;
+    gap:10px;
+    padding-right:150px;
+    min-height:40px;
+    margin-bottom:0;
+  }
+  .day-blurb{
+    max-width:none;
+    min-width:0;
+    margin:0;
+    font-family:'Outfit',sans-serif;
+    font-size:.86rem;
+    line-height:1.25;
+    color:var(--cream);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .sponsor-logos{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .sponsor-slot{min-height:84px;}
+  .sponsor-school{display:none;}
+  .sponsor-name{font-size:1.05rem; line-height:1.1;}
+  @media(max-width:900px){
+    .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media(max-width:540px){
+    .day-card{padding:13px 14px; min-height:72px;}
+    .day-head{
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      align-items:start;
+      gap:7px;
+      padding-right:112px;
+      min-height:0;
+    }
+    .day-date{font-size:.56rem; white-space:nowrap;}
+    .day-title{font-size:.84rem; line-height:1.15; min-width:0;}
+    .day-blurb{
+      grid-column:1 / -1;
+      margin-top:5px;
+      font-size:.71rem;
+      line-height:1.3;
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+    }
+    .day-time{
+      position:absolute;
+      right:10px;
+      top:10px;
+      margin:0;
+      max-width:102px;
+      font-size:.53rem;
+      padding:4px 5px;
+      line-height:1.2;
+      text-align:center;
+    }
+    .sponsor-logos{grid-template-columns:1fr 1fr; gap:9px;}
+    .sponsor-slot{min-height:76px; padding:11px 10px 10px;}
+    .sponsor-name{font-size:.82rem;}
+  }
+
+
+/* =========================================================
+   FINAL RETRO / SCRAPPY PASS
+   ========================================================= */
+
+/* --- schedule: less corporate, more hand-made event poster --- */
+.timeline{max-width:900px;}
+.timeline::before{
+  left:25px;
+  width:3px;
+  background:repeating-linear-gradient(to bottom,var(--yellow) 0 11px,transparent 11px 20px);
+}
+.day{
+  padding-left:66px;
+  margin-bottom:20px;
+}
+.day:nth-child(odd){transform:translateX(0);}
+.day:nth-child(even){transform:translateX(10px);}
+.day-dot{
+  left:8px;
+  top:7px;
+  width:34px;
+  height:34px;
+  border-radius:3px;
+  border:2px solid var(--navy);
+  box-shadow:4px 4px 0 rgba(0,0,0,.38);
+  transform:rotate(-4deg);
+}
+.day:nth-child(even) .day-dot{transform:rotate(4deg);}
+.day-card{
+  min-height:76px;
+  padding:17px 20px;
+  background:var(--navy2) !important;
+  border:2px solid var(--line);
+  border-radius:4px;
+  box-shadow:6px 6px 0 rgba(0,0,0,.34);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.day-card::after{
+  background:repeating-linear-gradient(0deg,transparent 0 6px,rgba(255,255,255,.018) 6px 7px);
+}
+.day-card:hover{
+  transform:translate(-4px,-5px) rotate(-.8deg);
+  box-shadow:10px 10px 0 rgba(0,0,0,.38);
+  border-color:var(--yellow) !important;
+}
+.day:nth-child(even) .day-card:hover{transform:translate(-4px,-5px) rotate(.8deg);}
+
+.day-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-right:154px;
+  min-height:40px;
+  margin:0;
+  overflow:hidden;
+}
+.day-date{
+  flex:0 0 auto;
+  font-size:.66rem;
+  color:var(--yellow);
+  border:1px solid rgba(244,211,94,.4);
+  background:var(--navy);
+  padding:4px 7px;
+}
+.day-title{
+  flex:0 0 auto;
+  font-size:1.04rem;
+  white-space:nowrap;
+}
+.day-blurb{
+  flex:1 1 auto;
+  min-width:0;
+  max-width:none;
+  margin:0;
+  color:var(--yellow) !important;
+  font-family:'Space Mono',monospace !important;
+  font-size:.68rem !important;
+  line-height:1.25 !important;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.day-time{
+  right:18px;
+  top:15px;
+  color:var(--yellow);
+  border:1px solid rgba(244,211,94,.42);
+  background:rgba(15,12,31,.7);
+  box-shadow:2px 2px 0 rgba(0,0,0,.2);
+}
+
+/* Give each day a poster-like ink color without gradients. */
+.c-kickoff .day-card{border-color:rgba(164,224,122,.55);}
+.c-field .day-card{border-color:rgba(123,232,159,.48);}
+.c-dorm .day-card{border-color:rgba(230,233,240,.38);}
+.c-color .day-card{border-color:rgba(255,178,122,.5);}
+.c-block .day-card{border-color:rgba(201,143,240,.5);}
+.c-troy .day-card{border-color:rgba(143,224,238,.5);}
+.c-finale .day-card{border-color:rgba(255,219,107,.55);}
+
+/* --- sponsor wall: taped-up flyer / xerox-board feeling --- */
+.sponsor-logos{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px 16px;
+  margin-top:30px;
+  max-width:920px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.sponsor-slot{
+  min-height:88px;
+  padding:17px 18px 15px;
+  justify-content:center;
+  align-items:flex-start;
+  border:2px dashed rgba(253,246,236,.32);
+  border-radius:2px;
+  background:rgba(253,246,236,.035) !important;
+  box-shadow:5px 5px 0 rgba(0,0,0,.3);
+  transform:rotate(-1deg);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.sponsor-slot:nth-child(2n){transform:rotate(1.2deg);}
+.sponsor-slot:nth-child(3n){transform:rotate(-.4deg);}
+.sponsor-slot::before{
+  left:10px;
+  top:9px;
+  width:32px;
+  height:3px;
+  background:var(--yellow);
+  transform:rotate(-4deg);
+}
+.sponsor-slot::after{
+  content:'✦';
+  top:8px;
+  right:12px;
+  font-family:inherit;
+  font-size:.8rem;
+  color:var(--yellow);
+  opacity:.8;
+}
+.sponsor-slot:hover{
+  transform:translateY(-5px) rotate(-2deg);
+  box-shadow:9px 9px 0 rgba(0,0,0,.36);
+  border-color:var(--yellow);
+  background:rgba(244,211,94,.06) !important;
+}
+.sponsor-slot:nth-child(2n):hover{transform:translateY(-5px) rotate(2deg);}
+.sponsor-name{
+  font-family:'Bungee',cursive;
+  font-size:.86rem;
+  line-height:1.15;
+  letter-spacing:.2px;
+  color:var(--cream);
+  text-shadow:2px 2px 0 rgba(0,0,0,.35);
+}
+
+@media(max-width:900px){
+  .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:540px){
+  .day{padding-left:52px;margin-bottom:15px;}
+  .day:nth-child(even){transform:none;}
+  .day-card{padding:13px 14px;min-height:72px;}
+  .day-head{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:start;
+    gap:7px;
+    padding-right:108px;
+    min-height:0;
+  }
+  .day-date{font-size:.54rem;padding:3px 5px;}
+  .day-title{
+    min-width:0;
+    white-space:normal;
+    font-size:.82rem;
+    line-height:1.12;
+  }
+  .day-blurb{
+    grid-column:1 / -1;
+    margin-top:5px;
+    font-size:.58rem !important;
+    line-height:1.35 !important;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+  .day-time{
+    right:9px;
+    top:9px;
+    max-width:98px;
+    font-size:.5rem;
+    padding:4px 5px;
+    line-height:1.2;
+    text-align:center;
+  }
+  .day-card:hover{transform:translate(-3px,-4px) rotate(-.7deg);}
+  .sponsor-logos{grid-template-columns:1fr 1fr;gap:12px 10px;}
+  .sponsor-slot{min-height:78px;padding:14px 11px 12px;}
+  .sponsor-name{font-size:.68rem;line-height:1.2;}
+}
+
 </style>
 </head>
   <!-- Google tag (gtag.js) -->
@@ -605,7 +1076,7 @@
         <iframe src="https://www.youtube.com/embed/WUThTKS5ULk?si=-MlQlNwj9O6fICOo&amp;controls=0" title="Rally Week Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="tv-knob"></div>
-      <div class="tv-label">RALLY WEEK BROADCAST // CHANNEL 86</div>
+      <div class="tv-label">CHANNEL 86 // SPECIAL REPORT</div>
     </div>
   </div>
   <h2 class="hero-theme">'80s LIFTOFF</h2>
@@ -662,13 +1133,13 @@
   </div>
 
   <div class="timeline">
-    <div class="day c-kickoff"><div class="day-dot">🚀</div><div class="day-card"><span class="day-time">2:00 PM – 6:00 PM</span><div class="day-head"><span class="day-date mono">SUN 9/13</span><h3 class="day-title">Kickoff</h3></div></div></div>
-    <div class="day c-field"><div class="day-dot">🌕</div><div class="day-card"><span class="day-time">5:00 PM – 7:00 PM</span><div class="day-head"><span class="day-date mono">MON 9/14</span><h3 class="day-title">Film Off</h3></div></div></div>
-    <div class="day c-dorm"><div class="day-dot">🌑</div><div class="day-card"><span class="day-time">5:30 PM – 8:00 PM</span><div class="day-head"><span class="day-date mono">TUE 9/15</span><h3 class="day-title">RPI's Got Talent</h3></div></div></div>
-    <div class="day c-color"><div class="day-dot">🎨</div><div class="day-card"><span class="day-time">5:00 PM – 9:30 PM</span><div class="day-head"><span class="day-date mono">WED 9/16</span><h3 class="day-title">Mid-Week</h3></div></div></div>
-    <div class="day c-block"><div class="day-dot">🧱</div><div class="day-card"><span class="day-time">6:00 PM – 9:00 PM</span><div class="day-head"><span class="day-date mono">THU 9/17</span><h3 class="day-title">Casino Royale</h3></div></div></div>
-    <div class="day c-troy"><div class="day-dot">🌆</div><div class="day-card"><span class="day-time">5:00 PM – 8:00 PM</span><div class="day-head"><span class="day-date mono">FRI 9/18</span><h3 class="day-title">Troy Night Out</h3></div></div></div>
-    <div class="day c-finale"><div class="day-dot">🏆</div><div class="day-card"><span class="day-time">4:00 PM – 8:30 PM</span><div class="day-head"><span class="day-date mono">SAT 9/19</span><h3 class="day-title">Finale</h3></div></div></div>
+    <div class="day c-kickoff"><div class="day-dot">🚀</div><div class="day-card"><span class="day-time">2:00 PM – 6:00 PM</span><div class="day-head"><span class="day-date mono">SUN 9/13</span><h3 class="day-title">Kickoff</h3><p class="day-blurb">Team launch, Rally Games, Headliner</p></div></div></div>
+    <div class="day c-field"><div class="day-dot">🌕</div><div class="day-card"><span class="day-time">5:00 PM – 7:00 PM</span><div class="day-head"><span class="day-date mono">MON 9/14</span><h3 class="day-title">Film Off</h3><p class="day-blurb">Movie challenge, Team competition</p></div></div></div>
+    <div class="day c-dorm"><div class="day-dot">🌑</div><div class="day-card"><span class="day-time">5:30 PM – 8:00 PM</span><div class="day-head"><span class="day-date mono">TUE 9/15</span><h3 class="day-title">RPI's Got Talent</h3><p class="day-blurb">Student performances, Music, Comedy</p></div></div></div>
+    <div class="day c-color"><div class="day-dot">🎨</div><div class="day-card"><span class="day-time">5:00 PM – 9:30 PM</span><div class="day-head"><span class="day-date mono">WED 9/16</span><h3 class="day-title">Mid-Week</h3><p class="day-blurb">Color Wars, Food, Campus celebration</p></div></div></div>
+    <div class="day c-block"><div class="day-dot">🧱</div><div class="day-card"><span class="day-time">6:00 PM – 9:00 PM</span><div class="day-head"><span class="day-date mono">THU 9/17</span><h3 class="day-title">Casino Royale</h3><p class="day-blurb">Casino games, Team points, Dress-up night</p></div></div></div>
+    <div class="day c-troy"><div class="day-dot">🌆</div><div class="day-card"><span class="day-time">5:00 PM – 8:00 PM</span><div class="day-head"><span class="day-date mono">FRI 9/18</span><h3 class="day-title">Troy Night Out</h3><p class="day-blurb">Downtown activities, Local food, Team challenges</p></div></div></div>
+    <div class="day c-finale"><div class="day-dot">🏆</div><div class="day-card"><span class="day-time">4:00 PM – 8:30 PM</span><div class="day-head"><span class="day-date mono">SAT 9/19</span><h3 class="day-title">Finale</h3><p class="day-blurb">Final challenges, Celebration, Awards</p></div></div></div>
   </div>
 </section>
 
@@ -685,6 +1156,21 @@
       <h3>Help Make Rally Week Happen</h3>
       <p>Help with events, activities, setup, check-in, and everything in between.</p>
       <a class="btn btn-secondary btn-rhombus" href="https://forms.gle/g3LbDMcr8i8U1Hay9"><span>🙌 Sign Up to Volunteer</span></a>
+    </div>
+  </div>
+  <div class="sponsor-strip">
+    <p class="section-tag">Campus Rally Partners</p>
+    <h3 class="section-title" style="font-size:clamp(1.35rem,3vw,2rem); margin-top:8px;">Built Across <span>RPI</span></h3>
+    <p class="section-desc" style="max-width:680px; margin:12px auto 0;">
+      Rally Week is a campus-wide celebration. These partners help bring Rally Week to life across campus.
+    </p>
+    <div class="sponsor-logos">
+      <div class="sponsor-slot sp-eng" data-num="01"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">⚙️</span><span class="sponsor-name">School of<br>Engineering</span><span class="sponsor-underline"></span></div>
+      <div class="sponsor-slot sp-sci" data-num="02"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">🧪</span><span class="sponsor-name">School of<br>Science</span><span class="sponsor-underline"></span></div>
+      <div class="sponsor-slot sp-hass" data-num="03"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">📖</span><span class="sponsor-name">School of Humanities,<br>Arts &amp; Social Sciences</span><span class="sponsor-underline"></span></div>
+      <div class="sponsor-slot sp-lally" data-num="04"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">📊</span><span class="sponsor-name">Lally School<br>of Management</span><span class="sponsor-underline"></span></div>
+      <div class="sponsor-slot sp-ccpd" data-num="05"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">🛡️</span><span class="sponsor-name">CCPD</span><span class="sponsor-underline"></span></div>
+      <div class="sponsor-slot sp-student" data-num="06"><span class="sponsor-tape"></span><span class="sponsor-icon" aria-hidden="true">🙂</span><span class="sponsor-name">Student<br>Experience</span><span class="sponsor-underline"></span></div>
     </div>
   </div>
 </section>
@@ -764,4 +1250,401 @@
 /* Final polish */
 .brief-card::after{content:"" !important; z-index:4 !important;}
 @media(min-width:1100px){.retro-tv-wrap{width:min(720px,82vw);}}
+
+  /* ---------- schedule: compact poster-style rows ---------- */
+  .day-card{padding:15px 20px; min-height:72px;}
+  .day-head{
+    display:grid;
+    grid-template-columns:auto auto minmax(0,1fr);
+    align-items:center;
+    gap:10px;
+    padding-right:150px;
+    min-height:40px;
+    margin-bottom:0;
+  }
+  .day-blurb{
+    max-width:none;
+    min-width:0;
+    margin:0;
+    font-family:'Outfit',sans-serif;
+    font-size:.86rem;
+    line-height:1.25;
+    color:var(--cream);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .sponsor-logos{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .sponsor-slot{min-height:84px;}
+  .sponsor-school{display:none;}
+  .sponsor-name{font-size:1.05rem; line-height:1.1;}
+  @media(max-width:900px){
+    .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media(max-width:540px){
+    .day-card{padding:13px 14px; min-height:72px;}
+    .day-head{
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      align-items:start;
+      gap:7px;
+      padding-right:112px;
+      min-height:0;
+    }
+    .day-date{font-size:.56rem; white-space:nowrap;}
+    .day-title{font-size:.84rem; line-height:1.15; min-width:0;}
+    .day-blurb{
+      grid-column:1 / -1;
+      margin-top:5px;
+      font-size:.71rem;
+      line-height:1.3;
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+    }
+    .day-time{
+      position:absolute;
+      right:10px;
+      top:10px;
+      margin:0;
+      max-width:102px;
+      font-size:.53rem;
+      padding:4px 5px;
+      line-height:1.2;
+      text-align:center;
+    }
+    .sponsor-logos{grid-template-columns:1fr 1fr; gap:9px;}
+    .sponsor-slot{min-height:76px; padding:11px 10px 10px;}
+    .sponsor-name{font-size:.82rem;}
+  }
+
+
+/* =========================================================
+   FINAL RETRO / SCRAPPY PASS
+   ========================================================= */
+
+/* --- schedule: less corporate, more hand-made event poster --- */
+.timeline{max-width:900px;}
+.timeline::before{
+  left:25px;
+  width:3px;
+  background:repeating-linear-gradient(to bottom,var(--yellow) 0 11px,transparent 11px 20px);
+}
+.day{
+  padding-left:66px;
+  margin-bottom:20px;
+}
+.day:nth-child(odd){transform:translateX(0);}
+.day:nth-child(even){transform:translateX(10px);}
+.day-dot{
+  left:8px;
+  top:7px;
+  width:34px;
+  height:34px;
+  border-radius:3px;
+  border:2px solid var(--navy);
+  box-shadow:4px 4px 0 rgba(0,0,0,.38);
+  transform:rotate(-4deg);
+}
+.day:nth-child(even) .day-dot{transform:rotate(4deg);}
+.day-card{
+  min-height:76px;
+  padding:17px 20px;
+  background:var(--navy2) !important;
+  border:2px solid var(--line);
+  border-radius:4px;
+  box-shadow:6px 6px 0 rgba(0,0,0,.34);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.day-card::after{
+  background:repeating-linear-gradient(0deg,transparent 0 6px,rgba(255,255,255,.018) 6px 7px);
+}
+.day-card:hover{
+  transform:translate(-4px,-5px) rotate(-.8deg);
+  box-shadow:10px 10px 0 rgba(0,0,0,.38);
+  border-color:var(--yellow) !important;
+}
+.day:nth-child(even) .day-card:hover{transform:translate(-4px,-5px) rotate(.8deg);}
+
+.day-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-right:154px;
+  min-height:40px;
+  margin:0;
+  overflow:hidden;
+}
+.day-date{
+  flex:0 0 auto;
+  font-size:.66rem;
+  color:var(--yellow);
+  border:1px solid rgba(244,211,94,.4);
+  background:var(--navy);
+  padding:4px 7px;
+}
+.day-title{
+  flex:0 0 auto;
+  font-size:1.04rem;
+  white-space:nowrap;
+}
+.day-blurb{
+  flex:1 1 auto;
+  min-width:0;
+  max-width:none;
+  margin:0;
+  color:var(--yellow) !important;
+  font-family:'Space Mono',monospace !important;
+  font-size:.68rem !important;
+  line-height:1.25 !important;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.day-time{
+  right:18px;
+  top:15px;
+  color:var(--yellow);
+  border:1px solid rgba(244,211,94,.42);
+  background:rgba(15,12,31,.7);
+  box-shadow:2px 2px 0 rgba(0,0,0,.2);
+}
+
+/* Give each day a poster-like ink color without gradients. */
+.c-kickoff .day-card{border-color:rgba(164,224,122,.55);}
+.c-field .day-card{border-color:rgba(123,232,159,.48);}
+.c-dorm .day-card{border-color:rgba(230,233,240,.38);}
+.c-color .day-card{border-color:rgba(255,178,122,.5);}
+.c-block .day-card{border-color:rgba(201,143,240,.5);}
+.c-troy .day-card{border-color:rgba(143,224,238,.5);}
+.c-finale .day-card{border-color:rgba(255,219,107,.55);}
+
+/* --- sponsor wall: taped-up flyer / xerox-board feeling --- */
+.sponsor-logos{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px 16px;
+  margin-top:30px;
+  max-width:920px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.sponsor-slot{
+  min-height:88px;
+  padding:17px 18px 15px;
+  justify-content:center;
+  align-items:flex-start;
+  border:2px dashed rgba(253,246,236,.32);
+  border-radius:2px;
+  background:rgba(253,246,236,.035) !important;
+  box-shadow:5px 5px 0 rgba(0,0,0,.3);
+  transform:rotate(-1deg);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.sponsor-slot:nth-child(2n){transform:rotate(1.2deg);}
+.sponsor-slot:nth-child(3n){transform:rotate(-.4deg);}
+.sponsor-slot::before{
+  left:10px;
+  top:9px;
+  width:32px;
+  height:3px;
+  background:var(--yellow);
+  transform:rotate(-4deg);
+}
+.sponsor-slot::after{
+  content:'✦';
+  top:8px;
+  right:12px;
+  font-family:inherit;
+  font-size:.8rem;
+  color:var(--yellow);
+  opacity:.8;
+}
+.sponsor-slot:hover{
+  transform:translateY(-5px) rotate(-2deg);
+  box-shadow:9px 9px 0 rgba(0,0,0,.36);
+  border-color:var(--yellow);
+  background:rgba(244,211,94,.06) !important;
+}
+.sponsor-slot:nth-child(2n):hover{transform:translateY(-5px) rotate(2deg);}
+.sponsor-name{
+  font-family:'Bungee',cursive;
+  font-size:.86rem;
+  line-height:1.15;
+  letter-spacing:.2px;
+  color:var(--cream);
+  text-shadow:2px 2px 0 rgba(0,0,0,.35);
+}
+
+@media(max-width:900px){
+  .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:540px){
+  .day{padding-left:52px;margin-bottom:15px;}
+  .day:nth-child(even){transform:none;}
+  .day-card{padding:13px 14px;min-height:72px;}
+  .day-head{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:start;
+    gap:7px;
+    padding-right:108px;
+    min-height:0;
+  }
+  .day-date{font-size:.54rem;padding:3px 5px;}
+  .day-title{
+    min-width:0;
+    white-space:normal;
+    font-size:.82rem;
+    line-height:1.12;
+  }
+  .day-blurb{
+    grid-column:1 / -1;
+    margin-top:5px;
+    font-size:.58rem !important;
+    line-height:1.35 !important;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+  .day-time{
+    right:9px;
+    top:9px;
+    max-width:98px;
+    font-size:.5rem;
+    padding:4px 5px;
+    line-height:1.2;
+    text-align:center;
+  }
+  .day-card:hover{transform:translate(-3px,-4px) rotate(-.7deg);}
+}
+
+/* =========================================================
+   SPONSOR WALL — TAPED PAPER CARDS (scrappy flyer-board look)
+   ========================================================= */
+:root{
+  --paper: #efe2c4;
+  --paper-shadow: #cbb98d;
+  --sp-eng: #e8558f;
+  --sp-eng-dk: #b2356a;
+  --sp-sci: #1f8f86;
+  --sp-sci-dk: #146058;
+  --sp-hass: #8a4fc7;
+  --sp-hass-dk: #5f3491;
+  --sp-lally: #ea7a2a;
+  --sp-lally-dk: #b3560f;
+  --sp-ccpd: #2f5fa8;
+  --sp-ccpd-dk: #1e3f75;
+  --sp-student: #4a9450;
+  --sp-student-dk: #2f6a34;
+}
+
+.sponsor-logos{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:26px 20px;
+  margin-top:34px;
+  max-width:960px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.sponsor-slot{
+  position:relative;
+  width:auto; height:auto; min-height:150px;
+  display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+  text-align:left;
+  border:none; border-radius:3px;
+  background:
+    radial-gradient(rgba(60,45,20,.10) 1px, transparent 1.1px) 0 0/13px 13px,
+    linear-gradient(160deg, var(--paper) 0%, #e6d5ae 100%) !important;
+  padding:26px 18px 18px;
+  box-shadow:
+    6px 7px 0 rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(60,45,20,.12);
+  transition:transform .18s ease, box-shadow .18s ease;
+  transform:rotate(-1.6deg);
+}
+.sponsor-logos .sponsor-slot:nth-child(2){transform:rotate(1.3deg);}
+.sponsor-logos .sponsor-slot:nth-child(3){transform:rotate(-.8deg);}
+.sponsor-logos .sponsor-slot:nth-child(4){transform:rotate(1deg);}
+.sponsor-logos .sponsor-slot:nth-child(5){transform:rotate(-1.2deg);}
+.sponsor-logos .sponsor-slot:nth-child(6){transform:rotate(1.7deg);}
+
+.sponsor-slot:hover{
+  transform:translateY(-6px) rotate(0deg) !important;
+  box-shadow:9px 11px 0 rgba(0,0,0,.36), inset 0 0 0 1px rgba(60,45,20,.12);
+  background:
+    radial-gradient(rgba(60,45,20,.10) 1px, transparent 1.1px) 0 0/13px 13px,
+    linear-gradient(160deg, #f4e8cc 0%, #ecdbb0 100%) !important;
+}
+
+/* piece of washi tape stuck across the top-left corner */
+.sponsor-tape{
+  position:absolute; top:-11px; left:20px; width:58px; height:24px;
+  transform:rotate(-6deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.16) 0 3px, transparent 3px 7px),
+    var(--accent, var(--sp-eng));
+  opacity:.88;
+  box-shadow:0 2px 3px rgba(0,0,0,.28);
+  border-radius:1px;
+}
+.sp-eng{--accent:var(--sp-eng);}
+.sp-sci{--accent:var(--sp-sci);}
+.sp-hass{--accent:var(--sp-hass);}
+.sp-lally{--accent:var(--sp-lally);}
+.sp-ccpd{--accent:var(--sp-ccpd);}
+.sp-student{--accent:var(--sp-student);}
+.sponsor-logos .sponsor-slot:nth-child(2n) .sponsor-tape{left:auto; right:20px; transform:rotate(6deg);}
+
+.sponsor-icon{
+  font-size:1.7rem;
+  line-height:1;
+  margin-bottom:12px;
+  filter:drop-shadow(1px 2px 0 rgba(0,0,0,.18));
+}
+
+.sponsor-name{
+  font-family:'Bungee',cursive;
+  font-weight:400;
+  font-size:.92rem;
+  line-height:1.28;
+  letter-spacing:.2px;
+  color:var(--sp-eng-dk);
+  text-transform:uppercase;
+}
+.sp-eng .sponsor-name{color:var(--sp-eng-dk);}
+.sp-sci .sponsor-name{color:var(--sp-sci-dk);}
+.sp-hass .sponsor-name{color:var(--sp-hass-dk);}
+.sp-lally .sponsor-name{color:var(--sp-lally-dk);}
+.sp-ccpd .sponsor-name{color:var(--sp-ccpd-dk);}
+.sp-student .sponsor-name{color:var(--sp-student-dk);}
+
+.sponsor-underline{
+  display:block; width:44px; height:4px; margin-top:10px; border-radius:2px;
+  background:var(--accent, var(--sp-eng));
+  transform:rotate(-1.5deg);
+}
+
+.sponsor-slot::before{content:none !important;}
+.sponsor-slot::after{
+  content:"\2726";
+  font-family:'Outfit',sans-serif;
+  position:absolute; top:10px; right:12px;
+  font-size:.7rem; color:var(--accent, var(--sp-eng)); opacity:.55;
+}
+.sponsor-logos .sponsor-slot:nth-child(2n)::after{right:auto; left:12px;}
+
+@media(max-width:900px){
+  .sponsor-logos{grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 16px;}
+}
+@media(max-width:540px){
+  .sponsor-logos{grid-template-columns:1fr 1fr; gap:18px 12px;}
+  .sponsor-slot{min-height:130px; padding:22px 14px 14px;}
+  .sponsor-name{font-size:.78rem;}
+  .sponsor-icon{font-size:1.4rem; margin-bottom:9px;}
+}
+
 </style>
