@@ -277,12 +277,21 @@
   .event ul{margin:4px 0 0 18px; color:var(--cream-dim); font-size:0.87rem; line-height:1.6;}
   .event ul ul{margin-top:2px;}
 
+/* Give each day a poster-like ink color without gradients. */
+.c-kickoff .day-card{border-color:#ffe7d5; background:linear-gradient(to right, #58ff6d91, #b3ff5c91) !important}
+.c-field .day-card{border-color:#e87bcf; background:linear-gradient(to right, #5a8aff91, #9a95ff91) !important;}
+.c-dorm .day-card{border-color:rgba(230,233,240,.38); background:linear-gradient(to right, #cd64ff91, #ff79f491) !important}
+.c-color .day-card{border-color:rgba(255,178,122,.5); background:linear-gradient(to right, #5cc7ff91, #5c84ff91) !important;}
+.c-block .day-card{border-color:#ffeab2; background:linear-gradient(to right, #ff5c5c91, #ff5caf91) !important;}
+.c-troy .day-card{border-color:rgba(143,224,238,.5); background:linear-gradient(to right, #bd5cff91, #5c6cff91) !important;}
+.c-finale .day-card{border-color:rgba(255,219,107,.55); background:linear-gradient(to right, #ffb95c91, #ffdf5c91) !important;}
+    
   /* day color coding */
-  .c-kickoff .day-dot{background:#7ec850;} .c-kickoff .day-title{color:#a4e07a;}
-  .c-field .day-dot{background:#4fd67a;} .c-field .day-title{color:#7be89f;}
+  .c-kickoff .day-dot{background:#7ec850;} .c-kickoff .day-title{color:#ffe7d5;}
+  .c-field .day-dot{background:#4fd67a;} .c-field .day-title{color:#e87bcf;}
   .c-dorm .day-dot{background:#cfd3dc;} .c-dorm .day-title{color:#e6e9f0;}
   .c-color .day-dot{background:linear-gradient(135deg,#ff5f6d,#ffc371);} .c-color .day-title{color:#ffb27a;}
-  .c-block .day-dot{background:var(--purple);} .c-block .day-title{color:#c98ff0;}
+  .c-block .day-dot{background:var(--purple);} .c-block .day-title{color:#ffeab2;}
   .c-carpet .day-dot{background:#e9e9ee;} .c-carpet .day-title{color:#f2f2f7;}
   .c-troy .day-dot{background:var(--cyan);} .c-troy .day-title{color:#8fe0ee;}
   .c-finale .day-dot{background:var(--yellow);} .c-finale .day-title{color:#ffdb6b;}
@@ -922,15 +931,6 @@
   background:rgba(15,12,31,.7);
   box-shadow:2px 2px 0 rgba(0,0,0,.2);
 }
-
-/* Give each day a poster-like ink color without gradients. */
-.c-kickoff .day-card{border-color:rgba(164,224,122,.55);}
-.c-field .day-card{border-color:rgba(123,232,159,.48);}
-.c-dorm .day-card{border-color:rgba(230,233,240,.38);}
-.c-color .day-card{border-color:rgba(255,178,122,.5);}
-.c-block .day-card{border-color:rgba(201,143,240,.5);}
-.c-troy .day-card{border-color:rgba(143,224,238,.5);}
-.c-finale .day-card{border-color:rgba(255,219,107,.55);}
 
 /* --- sponsor wall: taped-up flyer / xerox-board feeling --- */
 .sponsor-logos{
